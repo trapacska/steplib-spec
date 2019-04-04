@@ -48,7 +48,7 @@ Fields:
 - assets_download_base_uri
   > The prefix of an url where step assets are stored. For example: `<assets_download_base_uri>/<id>/assets/icon.svg` will point to the step `<id>`'s icon.
 - download_locations
-  > These are the locations where the step collection data is stored. This can be zip or git type. In case of git the storage will be a git repository. If the type is zip that means that beside of the git source the step data is stored on a 3rd place as well, in this case this is an S3 storage and its url prefix is set for the `src` option. For example: `<download_locations->type:zip->src>/<id>/<version>/step.zip` will point to the zip archive of the step repository's content for the given `<id>` and a given `<version>`. It is important that in this case not the step info from the StepLib will be stored in the archive but the whole step repository's content. 
+  > These are the locations where the step collection data is stored. This can be zip or git type. In case of git the storage will be a git repository. If the type is zip that means that beside of the git source the step data is stored on a 3rd place as well, in this case this is an S3 storage and its url prefix is set for the `src` option. For example: `<download_locations->type:zip->src>/<id>/<version>/step.zip` will point to the zip archive of the step repository's content for the given `<id>` and a given `<version>`. It is important that in this case not the step info from the StepLib will be stored in the archive but the whole step repository's content. Bitrise has all the step source archives uploaded on each push to master.
 
 ## step.yml
 
@@ -157,3 +157,64 @@ Other possible sources:
 - Path
   > Using `path::` prefix in the step ID will turn the CLI to automatically look for the step source within a directory on your local machine. There no need to use version part and the step ID will be the local path to the step's directory.
   > For example: `path::./mystep`.
+
+## Custom StepLib
+
+In case if a company(for example) decides to have only self maintained set of steps then a StepLib can be created for them. The minimum requirement for a structure to become a Bitrise StepLib that can be used for the Bitrise CLI is to have a `steplib.yml` in its root. This can be a local folder or git repository. To use the custom StepLib the access to it need to be set in the `bitrise.yml`'s **default_step_lib_source** field.
+
+Example `bitrise.yml`:
+```yaml
+default_step_lib_source: /Users/tamaspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib
+format_version: 7
+
+workflows:
+  primary:
+    steps:
+    - script:
+```
+
+After running `bitrise run primary` it can be validated easily if the local StepLib is the one that the CLI used by checking the CLI's output:
+
+```text
+
+  ██████╗ ██╗████████╗██████╗ ██╗███████╗███████╗
+  ██╔══██╗██║╚══██╔══╝██╔══██╗██║██╔════╝██╔════╝
+  ██████╔╝██║   ██║   ██████╔╝██║███████╗█████╗
+  ██╔══██╗██║   ██║   ██╔══██╗██║╚════██║██╔══╝
+  ██████╔╝██║   ██║   ██║  ██║██║███████║███████╗
+  ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
+
+  version: 1.28.0
+
+INFO[14:46:36] bitrise runs in Secret Filtering mode
+INFO[14:46:36] Running workflow: primary
+
+Switching to workflow: primary
+
+INFO[14:46:38] Step uses latest version -- Updating StepLib ...
+INFO[14:46:38] Update StepLib (/Users/tamaspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib)...
++------------------------------------------------------------------------------+
+| (0) script                                                                   |
++------------------------------------------------------------------------------+
+| id: script                                                                   |
+| version: 1.1.5                                                               |
+| collection: ...maspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib |
+| toolkit: bash                                                                |
+| time: 2019-04-04T14:46:41+02:00                                              |
++------------------------------------------------------------------------------+
+|                                                                              |
++ echo 'Hello World!'
+Hello World!
+|                                                                              |
++---+---------------------------------------------------------------+----------+
+| ✓ | script                                                        | 4.85 sec |
++---+---------------------------------------------------------------+----------+
+```
+
+Notice the line:
+
+`INFO[14:46:38] Update StepLib (/Users/tamaspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib)...`
+
+and
+
+`| collection: ...maspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib |`

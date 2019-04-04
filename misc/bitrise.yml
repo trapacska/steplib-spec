@@ -1,8 +1,10 @@
+default_step_lib_source: /Users/tamaspapik/Develop/go/src/github.com/bitrise-io/bitrise-steplib
+format_version: 7
+
 workflows:
   primary:
     steps:
-    - git::<git-url>@<branch>:
-    - path::/my/local/path/to/the/step:
+    - script:
 
 
     
