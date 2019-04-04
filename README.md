@@ -22,7 +22,7 @@ Beside of `steplib.yml` there is a steps folder in which each directory is a ste
 
 > Version format: `X.X.X` - (https://semver.org)
 
-Version is matching with the tag name in the step's repository that created for a release. Our tools relying on both version(git tag) and git commit as well, this is why it is important to not to move any tag on a step repository. In those cases the commit hash will be different than the original submitted in the release process.
+Version is matching with the tag name in the step's repository that created for a release.
 
 ## steplib.yml
 
@@ -61,6 +61,8 @@ source:
   git: https://github.com/bitrise-steplib/bitrise-step-android-lint.git
   commit: 960fc806a066bae5f8a38fd5e076f80dcc87b181
 ```
+
+Our tools relying on both version(git tag) and git commit as well because in the share process the tools are looking for the tag by name and gets the commit hash for the tag, this is why it is important to not to move any tag on a step repository. In those cases the commit hash will be different than the original submitted in the release process.
 
 Fields:
  - published_at
