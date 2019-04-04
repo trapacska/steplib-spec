@@ -1,0 +1,49 @@
+steps
+├── deploy-to-itunesconnect-shenzhen
+│   ├── 2.0.0
+│   │   └── step.yml
+│   ├── 2.1.0
+│   │   └── step.yml
+│   ├── 2.1.1
+│   │   └── step.yml
+│   ├── 2.1.2
+│   │   └── step.yml
+│   ├── assets
+│   │   └── icon.svg
+│   └── step-info.yml
+├── deploygate--upload-app-bitrise-step
+│   ├── 1.0.0
+│   │   └── step.yml
+│   ├── 1.0.1
+│   │   └── step.yml
+│   └── assets
+│       └── icon.svg
+├── detekt
+│   └── 1.0.0
+│       └── step.yml
+├── yarn
+│   ├── 0.0.2
+│   │   └── step.yml
+│   ├── 0.0.3
+│   │   └── step.yml
+│   ├── 0.0.4
+│   │   └── step.yml
+│   ├── 0.0.6
+│   │   └── step.yml
+│   ├── 0.0.7
+│   │   └── step.yml
+│   ├── 0.0.8
+│   │   └── step.yml
+│   └── assets
+│       └── icon.svg
+└── zip-directory-and-export-its-path
+    └── 1.0.2
+        └── step.yml
+
+steps
+  └── <id>
+        ├── <version>
+        │       └── step.yml
+        ├── assets
+        │       └── icon.svg
+        └── step-info.yml
