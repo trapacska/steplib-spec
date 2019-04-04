@@ -132,7 +132,7 @@ Currently we have a tool called [Stepman](https://github.com/bitrise-io/stepman)
  Stepman's release flow:
   - clones freshly the given StepLib fork repo
   - copies the step.yml from the step's repo
-  - injects git url, commit hash and published_ap timestamp
+  - injects git url, commit hash and published_at timestamp
   - pushes the new step.yml to the fork repo under `steps/<id>/<version>/step.yml` to the `<id>-<version>` branch.
 
 As a last step a PR need to be opened from the `<id>-<version>` branch to the original StepLib repo.
