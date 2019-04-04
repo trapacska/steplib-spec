@@ -1,9 +1,8 @@
-default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
-
 workflows:
   primary:
     steps:
-    - <id>@<version>:
+    - git::<git-url>@<branch>:
+    - path::/my/local/path/to/the/step:
 
 
     

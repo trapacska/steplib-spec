@@ -138,3 +138,22 @@ Currently we have a tool called [Stepman](https://github.com/bitrise-io/stepman)
   - pushes the new step.yml to the fork repo under `steps/<id>/<version>/step.yml` to the `<id>-<version>` branch.
 
 As a last step a PR need to be opened from the `<id>-<version>` branch to the original StepLib repo.
+
+## Using step outside of StepLib
+
+Example bitrise.yml:
+```yaml
+workflows:
+  primary:
+    steps:
+    - git::<git-url>@<branch>:
+    - path::/my/local/path/to/the/step:
+```
+
+Other possible sources:
+- Git
+  > Using `git::` prefix in the step ID will turn the CLI to automatically look for the step source from the given git URL and branch. URL will be the ID and the branch will go to the place of the version.
+  > For example: `git::https://github.com/bitrise-io/stepman@master`.
+- Path
+  > Using `path::` prefix in the step ID will turn the CLI to automatically look for the step source within a directory on your local machine. There no need to use version part and the step ID will be the local path to the step's directory.
+  > For example: `path::./mystep`.
