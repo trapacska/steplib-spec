@@ -160,7 +160,7 @@ Other possible sources:
 
 ## Custom StepLib
 
-In case if a company(for example) decides to have only self maintained set of steps then a StepLib can be created for them. The minimum requirement for a structure to become a Bitrise StepLib that can be used for the Bitrise CLI is to have a `steplib.yml` in its root. This can be a local folder or git repository. To use the custom StepLib the access to it need to be set in the `bitrise.yml`'s **default_step_lib_source** field.
+In case if a company(for example) decides to have only self maintained set of steps then a StepLib can be created for them. The minimum requirement for a structure to become a Bitrise StepLib that can be used for the Bitrise CLI is to have a `steplib.yml` in its root. This can be a local folder or git repository. To use the custom StepLib the access to it need to be set in the `bitrise.yml`'s **default_step_lib_source** field. Also multiple StepLib can be specified.
 
 Example `bitrise.yml`:
 ```yaml
